@@ -23,11 +23,14 @@ function processFolder(path) {
                 console.log(file);
                 const result = webp.dwebp(path + "\\" + file, path + "\\" + replaceExtension(file, ".png"), "-o", logging = "-v");
                 result.then((response) => {
-                    fs.unlinkSync(path + "\\" + file);
+                    if (!response.startsWith("Error!")) {
+                        fs.unlinkSync(path + "\\" + file);
+                    }
                 });
             }
         }
     });
 }
 
-processFolder("Y:\\Images");
+processFolder("C:\\Users\\inuya\\Downloads");
+//processFolder("W:\\Images");
